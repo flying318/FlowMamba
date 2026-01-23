@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/guoxin/MambaCD')
+sys.path.append('xxx') # add the path to your project root if needed
 
 import torch
 import torch.nn as nn

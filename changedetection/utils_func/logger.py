@@ -81,49 +81,6 @@ def log_metrics(logger, metrics, final=False):
         logger.info(f"The best accuracy:\n{table}")
     else:
         logger.info("\n" + table)
-
-def log_corn_metrics(logger, metrics, final=False, test=False):
-    f1_subcls_values = metrics.get('F1_subcls', [])
-    if test:
-        table_data = [
-            ["Metric", "Acc", "F1_oa", "loc_acc", "dmg_acc", "no_damage", "damage"],
-            ["Value", metrics['acc'], metrics['F1_oa'], metrics['loc_acc'], metrics['dmg_acc'],
-             f1_subcls_values[0], f1_subcls_values[1]]]
-    else:
-        table_data = [
-            ["Metric", "F1_oa", "F1_loc", "F1_bda", "no_damage", "damage"],
-            ["Value", metrics['F1_oa'], metrics['F1_loc'], metrics['F1_bda'], f1_subcls_values[0], 
-            f1_subcls_values[1]]]
-    table = tabulate(table_data, headers='firstrow', tablefmt="grid", stralign="center", numalign="center")
-    if final:
-        logger.info(f"The best accuracy:\n{table}")
-    else:
-        logger.info("\n" + table)
-
-def log_bcd_metrics(logger, metrics, final=False, test=False):
-    table_date=[
-        ["Metric", "mAcc", "F1-score", "mIoU", 'Precision', 'Recall'],
-        ["Value", metrics['macc'], metrics['F1_oa'], metrics['mIoU'], metrics['precision'], metrics['recall']]
-        ]
-    table = tabulate(table_date, headers='firstrow', tablefmt="grid", stralign="center", numalign="center")
-    if final:
-        logger.info(f"The best accuracy:\n{table}")
-    elif test:
-        logger.info(f"The test performance:\n{table}")
-    else:
-        logger.info(f"\n{table}")
-def log_scd_metrics(logger, metrics, final=False, test=False):
-    table_date=[
-        ["Metric", "kappa", "F1-score", "mIoU", 'Sek', 'acc'],
-        ["Value", metrics['kappa'], metrics['F1_oa'], metrics['mIoU'], metrics['Sek'], metrics['acc']]
-        ]
-    table = tabulate(table_date, headers='firstrow', tablefmt="grid", stralign="center", numalign="center")
-    if final:
-        logger.info(f"The best accuracy:\n{table}")
-    elif test:
-        logger.info(f"The test performance:\n{table}")
-    else:
-        logger.info(f"\n{table}")
     
 def log_test_metrics(logger, metrics):
     f1_subcls_values = metrics.get('F1_subcls', [])
